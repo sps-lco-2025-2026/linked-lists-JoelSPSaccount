@@ -26,6 +26,22 @@ public class IntegerLinkedList
 
     }
 
+    public void Prepend(int v)
+    {
+        _head = new IntegerNode(v, _head);
+    }
+    
+    internal bool Delete(int v)
+    {
+        if (_head == null) return false;
+        else if (_head._value == v) 
+        {
+            _head = _head._next;
+            return true;
+        }
+        else return _head.Delete(v);
+    }
+
     public override string ToString()
     {
         return _head == null ? "{}" : $"{{{_head}}}";
@@ -37,7 +53,7 @@ public class IntegerNode
     int _value;
     IntegerNode _next;
 
-     internal int Count => _next == null ? 1 : 1 + _next.Count;
+    internal int Count => _next == null ? 1 : 1 + _next.Count;
             
     internal int Sum => _next == null ? _value : _value + _next.Sum;
 
@@ -54,6 +70,17 @@ public class IntegerNode
             _next = new IntegerNode(v);
         else
             _next.Append(v);
+    }
+
+    internal bool Delete(int v)
+    {
+        if (_next == null) return false;
+        else if (_next._value == v) 
+        {
+            _next = _next._next;
+            return true;
+        }
+        else return _next.Delete(v);
     }
 
     public override string ToString()
