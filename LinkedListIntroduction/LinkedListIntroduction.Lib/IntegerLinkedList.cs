@@ -1,4 +1,6 @@
-﻿namespace LinkedListIntroduction.Lib;
+﻿using System.Runtime.InteropServices;
+
+namespace LinkedListIntroduction.Lib;
 
 public class IntegerLinkedList
 {
@@ -46,6 +48,11 @@ public class IntegerLinkedList
     {
         return _head == null ? "{}" : $"{{{_head}}}";
     }
+     public void reverse()
+    {
+        if (_head == null) return;
+        _head = _head.Reverse();
+    }
 }
 
 public class IntegerNode
@@ -86,6 +93,13 @@ public class IntegerNode
     public override string ToString()
     {
         return _next == null ? _value.ToString() : $"{_value}, {_next}";
+    }
+
+    internal void Reverse(IntegerNode? last = null)
+    {
+        IntegerNode newNode = new IntegerNode(v, last);
+        if (_next == null)
+            return 
     }
 
 }
