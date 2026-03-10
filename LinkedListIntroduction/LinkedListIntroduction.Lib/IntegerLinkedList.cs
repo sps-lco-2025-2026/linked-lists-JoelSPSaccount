@@ -48,10 +48,17 @@ public class IntegerLinkedList
     {
         return _head == null ? "{}" : $"{{{_head}}}";
     }
-     public void reverse()
+    public void Reverse()
     {
         if (_head == null) return;
         _head = _head.Reverse();
+    }
+    bool void Insert(int v, int i)
+    {
+        if (_head == null) {
+        if (i = 0) {_head = new IntegerNode(v); return true;}
+        else return false;}
+        else return false;
     }
 }
 
@@ -99,7 +106,13 @@ public class IntegerNode
     {
         IntegerNode newNode = new IntegerNode(v, last);
         if (_next == null)
-            return 
+            return newNode;
+        else return Reverse(newNode);
+    }
+
+    internal void Insert(int v, int i)
+    {
+        
     }
 
 }
