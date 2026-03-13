@@ -1,4 +1,8 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Formats.Asn1;
+using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace LinkedListIntroduction.Lib;
 
@@ -53,7 +57,7 @@ public class IntegerLinkedList
         if (_head == null) return;
         _head = _head.Reverse();
     }
-    bool void Insert(int v, int i)
+    public bool Insert(int v, int i)
     {
         if (_head == null) {
         if (i = 0) {_head = new IntegerNode(v); return true;}
@@ -110,9 +114,39 @@ public class IntegerNode
         else return Reverse(newNode);
     }
 
-    internal void Insert(int v, int i)
+    internal void Insert(int v)
     {
+        if (_value == v) _count ++;
+        if (_value < v)  _use =_left;
+        else _use = _right;
+        if (_use == null) ;
+        else _use.Insert(v);
         
     }
+    internal void Delete(int v)
+    {
+        if (_value == v) _count ++;
+        if (_value < v)  _use =_left;
+        else _use = _right;
+        if (_use == null) ;
+        else _use.Delete(v);
+        
+    }
+    internal int Count()//number of items in tree
+    {
+        if (_left == null){
+            if (_right == null) return _count;
+            return _count + _right.Count();
+        }
+        if (_right == null) return _left.Count() + _count;
+        return _left.Count() + _count + _right.Count();
+    }
+    internal int Total()//Sum of values in tree
+    {if (_left == null){
+            if (_right == null) return _count*_value;
+            return _count*_value + _right.Total();
+        }
+        if (_right == null) return _left.Total() + _count*_value;
+        return _left.Total() + _count*_value + _right.Total();}
 
 }
